@@ -101,7 +101,7 @@ function setup() {
   iconPlus = L.icon({
     iconUrl: 'assets/plus.png',
     iconRetinaUrl: 'assets/plus@2x.png',
-    iconSize: [8, 8]
+    iconSize: [8, 8],
   });
   
   iconPlusColor = L.icon({
@@ -185,7 +185,7 @@ function setup() {
     }
     
     //ADD MARKERS
-    marker[i] = L.marker([sites[i].xCoord, sites[i].yCoord], {icon: iconPlus});
+    marker[i] = L.marker([sites[i].xCoord, sites[i].yCoord], {icon: iconPlus, title: sites[i].name, riseOnHover: true});
     marker[i].addTo(lMap);
     
     sites[i].figure.marker = marker[i];
@@ -214,6 +214,22 @@ function setup() {
     });
     sites[i].div.mouseOut(function(){
       deHltSite(this);
+    });
+    
+    marker[i].on('mouseover', function(e){
+      for (var j in sites) {
+        if (sites[j].figure.marker == this) {
+          hltSite(sites[j].div);
+        }
+      }
+    });
+    
+    marker[i].on('mouseout', function(e){
+      for (var j in sites) {
+        if (sites[j].figure.marker == this) {
+          deHltSite(sites[j].div);
+        }
+      }
     });
     
     //YEAR ANIMATION
