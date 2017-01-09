@@ -101,13 +101,13 @@ function setup() {
   iconPlus = L.icon({
     iconUrl: 'assets/plus.png',
     iconRetinaUrl: 'assets/plus@2x.png',
-    iconSize: [12, 12]
+    iconSize: [8, 8]
   });
   
   iconPlusColor = L.icon({
     iconUrl: 'assets/plusColor.png',
     iconRetinaUrl: 'assets/plusColor@2x.png',
-    iconSize: [12, 12]
+    iconSize: [10, 10]
   });
   
   for (var i=0; i<table.getRowCount(); i++){
