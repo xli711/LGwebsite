@@ -9,12 +9,17 @@
   <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script
+      src="https://code.jquery.com/jquery-1.4.2.min.js"
+      integrity="sha256-4joqTi18K0Hrzdj/wGed9xQOt/UuHuur+CeogYJkPFk="
+      crossorigin="anonymous"></script>
 
   <!-- this line removes any default padding and style. you might only need one of these values set. -->
   <style> 
     body {padding: 0; margin: 0;} 
-    #mapid {width:25%; height:100%; position:fixed; bottom:0; padding:0; z-index:1}
-    #defaultCanvas0 {}
+    #defaultCanvas0 {
+      z-index: -99;
+    }
     @font-face {
       font-family: dinHeavy;
       src: url(assets/fonts/DINNextLTPro-Heavy.otf);
@@ -38,17 +43,98 @@
     }
     
 
-    #title {width:25%; height:50px; position:fixed; top:0; left:0; padding:15px; font-family:dinBold, serif; font-size:22; color:white; z-index: 99}
-    #subtitle {width:25%; height:20px; position:fixed; top:50; left:0; padding-left:15px; font-family:dinReg, serif; font-size:11; font-style:italic; color:white; z-index: 99}
-    #description {width:22%; height:50px; position:fixed; top:80; left:0; padding-left:15px; padding-top:6px; font-family:dinLight, serif; font-size:12; color:white; z-index: 99}
-    #panelBg {width:25%; height:150px; position:fixed; top:0; left:0; background-color:rgba(0,0,0, 0.62); z-index: 50}
-    #divLine {width:25%; height:.5px; position:fixed; top:80; left:0; background-color:rgba(255,255,255, 0.42); z-index: 51}
-    #sites {opacity:0; z-index:99}
+    #title {
+      width:25%; 
+      height:50px; 
+      position:fixed; 
+      top:0; left:0; 
+      padding:15px; 
+      font-family:dinBold, serif; 
+      /*font-size:22; */
+      font-size: 1.4vw;
+      color:white; 
+      z-index: 99
+    }
+    #subtitle {
+      width:25%; 
+      height:20px; 
+      position:fixed; 
+      top:48; 
+      left:0; 
+      padding-left:15px; 
+      font-family:dinReg, serif; 
+      /*font-size:11; */
+      font-size: 0.7vw;
+      font-style:italic; 
+      color:white; 
+      z-index: 99
+    }
+    #description {
+      width:22%; 
+      height:50px; 
+      position:fixed; 
+      top:80; 
+      left:0; 
+      padding-left:15px; 
+      padding-top:6px; 
+      font-family:dinLight, serif; 
+      /*font-size:12; */
+      font-size: 0.75vw;
+      color:white; 
+      z-index: 99
+    }
+    #panelBg {
+      width:25%; 
+      height:150px; 
+      position:fixed; 
+      top:0; 
+      left:0; 
+      background-color:rgba(0,0,0, 0.62); 
+      z-index: 50
+    }
+    #divLine {
+      width:25%; 
+      height:.5px; 
+      position:fixed; 
+      top:80; 
+      left:0; 
+      background-color:rgba(255,255,255, 0.42); 
+      z-index: 51
+    }
+    #sites {
+      opacity:0; 
+      z-index:99
+    }
+    .map {
+      width:100%; 
+      height:100%; 
+      position:fixed; 
+      bottom:0; 
+      padding:0; 
+      z-index:1
+      transition:  width 0.5s, padding 0.5s;
+      -webkit-transition:  width 0.5s, padding 0.5s;
+      -webkit-transition-timing-function: ease-in-out; 
+      transition-timing-function: ease-in-out;
+    }
+
+    .map.left {
+      width: 25%;
+    }
+
+    .p5Div {
+      z-index: -50; 
+    }
+
+    .p5Img {
+      z-index: -50;
+    }
+
     
   </style>
 </head>
 
 <body>
-  <div id="mapid"></div>
+  <div id="mapid" class="map"></div>
 </body>
 </html>
