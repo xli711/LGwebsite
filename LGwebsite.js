@@ -41,6 +41,7 @@ var sortMethod;
 var reSort = false;
 var scroll = false;
 var collapsed = false;
+var closeButton;
 
 function preload(){
   table = loadTable("data/data.csv", "csv", "header");
@@ -86,6 +87,15 @@ function setup() {
   print(table.getRowCount() + " total rows in table");
   print(table.getColumnCount() + " total columns in table");
   print(table.getColumn('Name'));
+
+  //CLOSE BUTTON
+  closeButton = createImg('assets/closeButton.png');
+  closeButton.class('closeButton');
+  closeButton.mouseClicked(function(){
+    expandMap();
+  });
+  closeButton.size(25, 25);
+  closeButton.hide();
   
   //BASEMAP
   lMap = L.map('mapid', {
@@ -162,7 +172,6 @@ function setup() {
 
     sites[i].div.id('sites');
     sites[i].div.addClass('p5Div');
-    sites[i].div.position(windowWidth*.25+x0, 0);
     
     sites[i].aerial1 = createImg('assets/aerials/'+num[i]+'_'+sites[i].aYear1+'.jpg');
     sites[i].aerial2 = createImg('assets/aerials/'+num[i]+'_'+sites[i].aYear2+'.jpg');
@@ -279,6 +288,12 @@ function setup() {
 function draw() {
   timer = second();
   yOffset = 0;
+
+  if (collapsed){
+    closeButton.show();
+  } else {
+    closeButton.hide();
+  }
   
   if (reSort){
     sites.sort(sortMethod);
@@ -548,43 +563,43 @@ function draw() {
   textSize(12);
   textFont(dinReg);
   textAlign(LEFT, CENTER);
-  text('URBAN', width-sqDist*3-sqSize/2-10, 12);
-  text('INDUSTRIAL', width-sqDist*2-sqSize/2-10, 12);
-  text('ENVIRONMENTAL', width-sqDist-sqSize/2-10, 12);
+  text('URBAN', width-sqDist*3-sqSize/2-50, 12);
+  text('INDUSTRIAL', width-sqDist*2-sqSize/2-50, 12);
+  text('ENVIRONMENTAL', width-sqDist-sqSize/2-50, 12);
   rectMode(CENTER);
   fill('#ffc000');
-  rect(width-sqDist*3-10, 28, sqSize, sqSize);
+  rect(width-sqDist*3-50, 28, sqSize, sqSize);
   fill('#fd5cff');
-  rect(width-sqDist*3-10, 42, sqSize, sqSize);
+  rect(width-sqDist*3-50, 42, sqSize, sqSize);
   fill('#ea5757');
-  rect(width-sqDist*3-10, 56, sqSize, sqSize);
+  rect(width-sqDist*3-50, 56, sqSize, sqSize);
   fill('#ff9239');
-  rect(width-sqDist*3-10, 70, sqSize, sqSize);
+  rect(width-sqDist*3-50, 70, sqSize, sqSize);
   fill('#666666');
-  rect(width-sqDist*2-10, 28, sqSize, sqSize);
+  rect(width-sqDist*2-50, 28, sqSize, sqSize);
   fill('#39a9ff');
-  rect(width-sqDist*2-10, 42, sqSize, sqSize);
+  rect(width-sqDist*2-50, 42, sqSize, sqSize);
   fill('#c8e620');
-  rect(width-sqDist-10, 28, sqSize, sqSize);
+  rect(width-sqDist-50, 28, sqSize, sqSize);
   fill('#68e2ea');
-  rect(width-sqDist-10, 42, sqSize, sqSize);
+  rect(width-sqDist-50, 42, sqSize, sqSize);
   fill('#0e8521');
-  rect(width-sqDist-10, 56, sqSize, sqSize);
+  rect(width-sqDist-50, 56, sqSize, sqSize);
   fill(50);
   textSize(10);
   textAlign(LEFT, CENTER);
-  text('residential', width-sqDist*3+sqSize-10, 28);
-  text('institutional', width-sqDist*3+sqSize-10, 42);
-  text('commercial', width-sqDist*3+sqSize-10, 56);
-  text('office', width-sqDist*3+sqSize-10, 70);
-  text('manufacturing', width-sqDist*2+sqSize-10, 28);
-  text('logistics', width-sqDist*2+sqSize-10, 42);
-  text('recreational', width-sqDist+sqSize-10, 28);
-  text('ecological', width-sqDist+sqSize-10, 42);
-  text('agricultural', width-sqDist+sqSize-10, 56);
+  text('residential', width-sqDist*3+sqSize-50, 28);
+  text('institutional', width-sqDist*3+sqSize-50, 42);
+  text('commercial', width-sqDist*3+sqSize-50, 56);
+  text('office', width-sqDist*3+sqSize-50, 70);
+  text('manufacturing', width-sqDist*2+sqSize-50, 28);
+  text('logistics', width-sqDist*2+sqSize-50, 42);
+  text('recreational', width-sqDist+sqSize-50, 28);
+  text('ecological', width-sqDist+sqSize-50, 42);
+  text('agricultural', width-sqDist+sqSize-50, 56);
   
   rectMode(CORNER);
-  
+
   //YEAR GRIDS
   var gridYear = [1978, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030];
   for (var y in gridYear){
@@ -708,7 +723,7 @@ function draw() {
 }
 
 function windowResized(){
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth*.75, imgHeight*table.getRowCount()+imgHeight*11+y0+y1);
 }
 
 function collapseMap(){
@@ -716,6 +731,14 @@ function collapseMap(){
     $('#mapid').addClass('left');
     setTimeout(function(){ lMap.invalidateSize({animate: true, duration: 1})}, 400);
     collapsed = true;
+  }
+}
+
+function expandMap(){
+  if (collapsed == true){
+    $('#mapid').removeClass('left');
+    setTimeout(function(){ lMap.invalidateSize({animate: true, duration: 1})}, 400);
+    collapsed = false;
   }
 }
 
