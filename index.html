@@ -44,48 +44,51 @@
     
 
     #title {
-      width:25%; 
-      height:50px; 
-      position:fixed; 
-      top:0; left:0; 
-      padding:15px; 
-      font-family:dinBold, serif; 
+      width:100%; 
+      height:auto; 
+      display: block;
+      position:relative; 
+      top:0; 
+      left:0; 
+      float:left;
+      border-bottom: 1px solid rgba(255,255,255, 0.42);
+      z-index: 99
+    }
+
+    #title p{
+      font-family:dinMedium, serif; 
       /*font-size:22; */
-      font-size: 1.4vw;
+      font-size: 1.35vw;
       color:white; 
-      z-index: 99
+      padding: 10px 15px;
+      margin:0;
     }
-    #subtitle {
-      width:25%; 
-      height:20px; 
-      position:fixed; 
-      top:48; 
-      left:0; 
-      padding-left:15px; 
-      font-family:dinReg, serif; 
-      /*font-size:11; */
-      font-size: 0.7vw;
-      font-style:italic; 
-      color:white; 
-      z-index: 99
-    }
+
     #description {
-      width:22%; 
-      height:50px; 
-      position:fixed; 
-      top:80; 
+      width:100%; 
+      height:auto; 
+      position:relative; 
+      display: block;
       left:0; 
-      padding-left:15px; 
-      padding-top:6px; 
+      float:left;
+      z-index: 99
+    }
+
+    #description p{
       font-family:dinLight, serif; 
       /*font-size:12; */
       font-size: 0.75vw;
+      text-align: justify;
       color:white; 
-      z-index: 99
+      padding:10px 15px;
+      margin:0;
     }
-    #panelBg {
+
+    .text-container {
       width:25%; 
-      height:150px; 
+      display:flex;
+      flex-direction: column;
+      min-height:20vh;
       position:fixed; 
       top:0; 
       left:0; 
@@ -105,6 +108,66 @@
       opacity:0; 
       z-index:99
     }
+
+    input {
+      display: none;
+      visibility: hidden;
+    }
+
+    label {
+      position: relative;
+      display: block;
+      padding: 5px;
+      font-family: dinLight, serif;
+      font-size: 0.75vw;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255, 0.42);
+      color: rgba(0,0,0, 0.62);
+    }
+
+    label:hover {
+      color: black;
+    }
+
+    label::before {
+      font-family: dinBold, serif;
+      font-size: 22px;
+      content: "+";
+      vertical-align: text-top;
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
+    }
+
+    #expand {
+      position:relative;
+      width:100%;
+      max-height: 0px;
+      display:block;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+
+    #expand p{
+      font-family: dinLight, serif;
+      font-size: 0.6vw;
+      color: white;
+      padding: 10px 15px;
+      margin:0;
+    }
+
+    #sponsor{
+      border-top: 1px solid rgba(255,255,255, 0.22);
+    }
+
+    #toggle:checked ~ #expand {
+      max-height: 80vh;
+    }
+    #toggle:checked ~ label::before {
+      content: "-";
+    }
+
     .map {
       width:100%; 
       height:100%; 
@@ -141,6 +204,35 @@
 </head>
 
 <body>
+  <div class="text-container">
+    <div id="title">
+      <p>Developing the Littoral Gradient Atlas</p>
+    </div>
+    <div id="description">
+      <p>Coastal land reclamation is one of the primary forms of global urban expansion. China is home to the world’s largest reclamation projects, where over the last 50 years it has reclaimed 13,380 km2 of land and expanded it coastline by almost 2,000 kilometers. This atlas showcases a range of coastal urban developments built on reclaimed land and how they change over time.</p>
+    </div>
+    <input id="toggle" type="checkbox">
+    <label for="toggle"></label>
+    <div id="expand">
+      <p>Research Team:<br>
+        <br>
+        <b>Fadi Masoud</b> <br>
+        Assistant Professor of Landscape Architecture and Urbanism<br>
+        John H. Daniels Faculty of Architecture, Landscape, and Design - University of Toronto<br>
+        <br>
+        <b>Brent D. Ryan</b><br>
+        Associate Professor of Urban Design and Public Policy <br>
+        MIT’s Department of Urban Studies and Planning<br>
+        <br>
+        <b>Xi (Colleen) Qiu (PhD candidate)</b> <br>
+        MIT’s Department of Urban Studies and Planning<br>
+        <br>
+        Xinhui Li, Caner Oktem, Ricardo Jnani Gonzalez, Xhulio Binjaku, <br>
+        Sean Phillips, Brandon Peterson, Waishan Qiu
+      </p>
+      <p id="sponsor">Project funded by Samuel Tax Lee MIT Real Estate Entrepreneurship Lab</p>
+    </div>
+  </div>
   <div id="mapid" class="map"></div>
 </body>
 </html>

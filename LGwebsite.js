@@ -73,16 +73,16 @@ function setup() {
   labelHeight = 18;
   
   //DRAW TITLE
-  var titleDiv = createDiv('THE LITTORAL GRADIENT ATLAS');
-  titleDiv.id('title');
-  var subTitleDiv = createDiv('THE SAMUEL TAK LEE MIT REAL ESTATE ENTREPRENEURSHIP LAB<br>THE LEVENTHAL CENTER FOR ADVANCED URBANISM');
-  subTitleDiv.id('subtitle');
-  var desDiv = createDiv('Coastal land reclamation has been a major source of development land in China in recent years. This project looks into the range of land reclamation projects in China and their change over time.');
-  desDiv.id('description');
-  var bgDiv = createDiv('');
-  bgDiv.id('panelBg');
-  var divLine = createDiv('');
-  divLine.id('divLine');
+  // var titleDiv = createDiv('Developing the Littoral Gradient Atlas');
+  // titleDiv.id('title');
+  // var subTitleDiv = createDiv('THE SAMUEL TAK LEE MIT REAL ESTATE ENTREPRENEURSHIP LAB<br>THE LEVENTHAL CENTER FOR ADVANCED URBANISM');
+  // subTitleDiv.id('subtitle');
+  // var desDiv = createDiv('Coastal land reclamation is one of the primary forms of global urban expansion. China is home to the world’s largest reclamation projects, where over the last 50 year it has reclaimed 13,380 km2 of land and expanded it coastline by almost 2,000 kilometers. This atlas showcases a range of coastal urban developments built on reclaimed land and how they change over time.');
+  // desDiv.id('description');
+  // var bgDiv = createDiv('');
+  // bgDiv.id('panelBg');
+  // var divLine = createDiv('');
+  // divLine.id('divLine');
   
   print(table.getRowCount() + " total rows in table");
   print(table.getColumnCount() + " total columns in table");
