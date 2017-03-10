@@ -657,7 +657,7 @@ function draw() {
         sites[i].fldMap.size(650, 416.7);
         sites[i].fldMap.show();
         sites[i].statFig.position(windowWidth*.25+x0+700, y0+imgHeight*i+imgHeight+380);
-        sites[i].statFig.size(300, 263.7);
+        sites[i].statFig.size(300, 204.8);
         sites[i].statFig.show();
         //sites[i].fldMap.style('opacity', sites[i].figure.currentOpacity);
       }
